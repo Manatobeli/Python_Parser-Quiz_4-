@@ -12,7 +12,7 @@ urls = ['https://en.wikipedia.org/wiki/Web_scraping',
         'https://en.wikipedia.org/wiki/Session_(computer_science)']
 
 # CSV Config
-file = open('data.csv', 'a', encoding='utf-8')
+file = open('data.csv', 'w', encoding='utf-8')
 writerobj = csv.writer(file)
 writerobj.writerow(['Page Count', 'Url', 'Info'])
 
@@ -30,8 +30,13 @@ for url in urls:
             if element.span.text in ['See also', 'References']:
                 break
 
-        elif element.name in ['p', 'ul']:
+        elif element.name == 'p':
+            print(element.findParent().name)
             element_Text_ls.append(element.text)
+
+        elif element.name == 'ul':
+                print(element.findParent().name)
+                element_Text_ls.append(element.text)
 
     for element in element_Text_ls:
         result += element
@@ -44,4 +49,5 @@ for url in urls:
 
     sleep(10)
 
+file.close()
 print('Finished!')
