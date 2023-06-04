@@ -31,12 +31,10 @@ for url in urls:
                 break
 
         elif element.name == 'p':
-            print(element.findParent().name)
             element_Text_ls.append(element.text)
 
         elif element.name == 'ul':
-                print(element.findParent().name)
-                element_Text_ls.append(element.text)
+            element_Text_ls.append(element.text)
 
     for element in element_Text_ls:
         result += element
